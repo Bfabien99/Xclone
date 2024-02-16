@@ -1,16 +1,16 @@
 <?php
-    $docTitle = "X. C'est ce qu'il se passe / X";
+    $docTitle = "Se connecter à X / X";
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png">
+    <link rel="icon" type="image/x-icon" href="https://abs.twimg.com/responsive-web/client-web/icon-ios.77d25eba.png" />
     <script
       src="https://kit.fontawesome.com/1f88d87af5.js"
       crossorigin="anonymous"
-    ></script>
+     defer></script>
     <title><?= $docTitle; ?></title>
     <style>
       @import url("https://fonts.cdnfonts.com/css/verdana-pro-cond");
@@ -34,41 +34,52 @@
         display: flex;
         padding: 20px;
         font-family: "Verdana Pro", sans-serif;
+        background-color: rgb(229, 227, 227);
       }
 
-      main a {
-        text-decoration: none;
-      }
-
-      .section_x {
-        width: 100%;
-        max-width: 600px;
-      }
-
-      .section_x img {
-        width: 100%;
-      }
-
-      .section_connect {
+      .modal {
+        padding: 5px 40px 5px 40px;
         display: flex;
         flex-direction: column;
-        gap: 1.5em;
-        padding: 10px;
-        max-width: 700px;
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        filter: drop-shadow(0 0 20px #86858579);
+        padding-bottom: 60px;
       }
 
-      .section_connect > .title {
-        font-size: 4.2em;
+      .top {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        text-align: center;
       }
 
-      .section_connect > .title::first-letter{
-        text-transform: capitalize;
+      .btn_close {
+        text-decoration: none;
+        font-size: 1.3em;
+        color: #000;
+      }
+
+      .top .img {
+        flex-grow: 1;
       }
 
       .section_btn {
         display: flex;
         flex-direction: column;
         gap: 1em;
+        max-width: 400px;
+        margin: auto;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .section_btn a{
+        text-decoration: none;
       }
 
       .section_btn .title {
@@ -121,7 +132,45 @@
         background-color: #eee;
       }
 
-      .btn_signup {
+      form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+        max-width: 300px;
+      }
+
+      .input_edit{
+        display: flex;
+        flex-direction: column;
+        border: 2px solid #ccc;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      .input_edit input{
+        width: 100%;
+        padding: 10px;
+        height: 40px;
+        font-size: 1.1em;
+        border: none;
+        outline: none;
+        margin-bottom: 10px;
+        color: #aeaeae;
+      }
+
+      .input_edit span{
+        text-align: center;
+        color: #fff;
+        font-size: .7em;
+        height: 15px;
+      }
+
+      button{
+        cursor: pointer;
+      }
+
+      .btn_next {
         width: 100%;
         max-width: 300px;
         text-align: center;
@@ -130,35 +179,12 @@
         font-size: 1.1em;
         font-weight: bold;
         color: #fff;
-        background-color: #35a4ed;
+        background-color: #000000;
+        border: none;
+        outline: none;
       }
 
-      .btn_signup:hover{
-        background-color: #1f91de;
-      }
-
-      .policy{
-        font-size: .7em;
-        width: 100%;
-        max-width: 300px;
-        color: #646464;
-      }
-
-      .policy a{
-        color: #35a4ed;
-      }
-
-      .policy a:hover{
-        text-decoration: underline;
-      }
-
-      .section_login{
-        display: flex;
-        flex-direction: column;
-        gap: 1.3em;
-      }
-
-      .btn_login{
+      .btn_forgot {
         width: 100%;
         max-width: 300px;
         text-align: center;
@@ -167,54 +193,49 @@
         color: #000;
         font-size: 1.1em;
         font-weight: bold;
+        background-color: #ffffff;
         border: 1px solid #ccc;
+      }
+
+      .btn_next:hover{
+        background-color:#121212ee;
+      }
+
+      .btn_forgot:hover{
+        background-color: #eeeeeeb8;
+      }
+
+      .signup{
+        color: #929191;
+        font-size: .9em;
+        margin-top: 10px;
+      }
+
+      .signup a{
         color: #35a4ed;
-      }
-
-      .btn_login:hover{
-        background-color: #a8dcfe1f;
-      }
-
-      footer{
-        padding: 20px;
-        text-align: center;
-        display: flex;
-        gap: 1em;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        font-family: "Verdana Pro", sans-serif;
-      }
-
-      footer a{
         text-decoration: none;
-        color: #646464;
-        font-weight: 100;
-        font-size: .8em;
       }
 
-      footer a::first-letter{
-        text-transform: capitalize;
-      }
-
-      footer a:hover{
+      .signup a:hover{
         text-decoration: underline;
       }
     </style>
   </head>
   <body>
     <main>
-      <section class="section_x">
-        <img src="/assets/img/x.png" alt="" />
-      </section>
-      <section class="section_connect">
-        <h2 class="title">ça se passe maintenant</h2>
+      <section class="modal">
+        <div class="top">
+          <a href="/" class="btn_close"><i class="fas fa-times"></i></a>
+          <div class="img">
+            <img src="/assets/img/x.png" alt="" width="50px" />
+          </div>
+        </div>
         <div class="section_btn">
-          <h3 class="title">Inscrivez-vous.</h3>
+          <h3 class="title">Connectez-vous à X</h3>
           <a href="" class="btn_google"
             ><i class="fab fa-google"></i> S'inscrire avec Google</a
           >
-          <a href="" class="btn_apple"
+            <a href="" class="btn_apple"
             ><i class="fab fa-apple"></i>S'inscrire avec Apple</a
           >
           <div class="lines">
@@ -222,44 +243,35 @@
             <span>ou</span>
             <span class="line"></span>
           </div>
-          <a href="signup.php" class="btn_signup">Créer un compte</a>
-          <div class="policy">
-            <p>
-              En vous inscrivant, vous acceptez les
-              <a href="">Conditions d'utilisation</a> et la
-              <a href="">Politique de confidentialité</a>, notamment l'<a
-                href=""
-                >Utilisation des cookies</a
-              >
-            </p>
-          </div>
-        </div>
-        <div class="section_login">
-          <h3>Vous avez déjà un compte ?</h3>
-          <a href="modal_login.php" class="btn_login">Se connecter</a>
+
+          <form action="" method="post">
+            <div class="input_edit">
+              <span class="input_edit_label">Numéro de téléphone, adresse email ou nom d'utilisateur</span>
+              <input type="text" class="input_edit_input" name="username" placeholder="Numéro de téléphone, adresse email ou nom d'utilisateur">
+            </div>
+            <button type="submit" class="btn_next">Suivant</button>
+          </form>
+
+          <a href="" class="btn_forgot">mot de passe oublié ?</a>
+
+          <p class="signup">Vous n'avez pas de compte ? <a href="signup.php">Inscrivez-vous</a></p>
         </div>
       </section>
     </main>
-    <footer>
-      <a target="_blank" href="https://about.twitter.com/fr">à propos</a>
-      <a target="_blank" href="https://help.twitter.com/en/using-x/download-the-x-app">Téléchargez l'application X</a>
-      <a target="_blank" href="https://help.twitter.com/fr">Centre d'assistance</a>
-      <a target="_blank" href="https://twitter.com/fr/tos">Conditions d’utilisation</a>
-      <a target="_blank" href="https://twitter.com/fr/privacy">Politique de Confidentialité</a>
-      <a target="_blank" href="https://help.twitter.com/fr/rules-and-policies/x-cookies">Politique relative aux cookies</a>
-      <a target="_blank" href="https://help.twitter.com/fr/resources/accessibility">Accessibilité</a>
-      <a target="_blank" href="https://business.twitter.com/en/help/troubleshooting/how-twitter-ads-work.html?ref=web-twc-ao-gbl-adsinfo&utm_source=twc&utm_medium=web&utm_campaign=ao&utm_content=adsinfo">Informations sur les publicités</a>
-      <a target="_blank" href="https://blog.twitter.com">Blog</a>
-      <a target="_blank" href="https://status.twitterstat.us">Statut</a>
-      <a target="_blank" href="https://careers.twitter.com/en">Carrières</a>
-      <a target="_blank" href="https://about.twitter.com/fr/company/brand-resources">Ressources de la marque</a>
-      <a target="_blank" href="https://ads.twitter.com/?ref=gl-tw-tw-twitter-advertise">Publicité</a>
-      <a target="_blank" href="https://marketing.twitter.com/fr">Marketing</a>
-      <a target="_blank" href="https://business.twitter.com/?ref=web-twc-ao-gbl-twitterforbusiness&utm_source=twc&utm_medium=web&utm_campaign=ao&utm_content=twitterforbusiness">X pour les professionnels</a>
-      <a target="_blank" href="https://developer.twitter.com/en">Développeurs</a>
-      <a target="_blank" href="https://twitter.com/i/directory/profiles">Répertoire</a>
-      <a target="_blank" href="https://twitter.com/settings">Paramètres</a>
-      <a target="_blank" href="">© 2024 X Corp.</a>
-    </footer>
   </body>
+  <script>
+    let edit_input = document.querySelector('.input_edit_input');
+    let label = document.querySelector('.input_edit_label');
+
+    edit_input.addEventListener('focus', ()=>{
+      document.getElementsByName('username')[0].placeholder="";
+      label.style.color="#35a4ed";
+      edit_input.parentElement.style.border = "2px solid #35a4ed"
+    })
+    edit_input.addEventListener('focusout', ()=>{
+      document.getElementsByName('username')[0].placeholder="Numéro de téléphone, adresse email ou nom d'utilisateur";
+      label.style.color="#fff";
+      edit_input.parentElement.style.border = "2px solid #ccc"
+    })
+  </script>
 </html>

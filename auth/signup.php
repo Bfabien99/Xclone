@@ -47,7 +47,7 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 800px;
+        max-width: 600px;
         margin: auto;
         border-radius: 10px;
         background-color: rgb(255, 255, 255);
@@ -230,7 +230,7 @@
     <main>
       <section class="modal">
         <div class="top">
-          <a href="login.php" class="btn_close"><i class="fas fa-times"></i></a>
+          <a href="/" class="btn_close"><i class="fas fa-times"></i></a>
           <div class="img">
             <img src="/assets/img/x.png" alt="" width="50px" />
           </div>
