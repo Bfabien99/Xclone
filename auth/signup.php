@@ -1,5 +1,8 @@
 <?php
     $docTitle = "S'inscrire sur X / X";
+    $months = [
+      "janvier","février","mars","avril","mai","juin","juillet","août","septembre"
+    ]
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -202,13 +205,16 @@
       .box select {
         height: 40px;
         flex-grow: 1;
-        opacity: 0;
+        border: 1px solid #fff;
+        outline: none;
         cursor: pointer;
+        color: #444;
       }
 
       select option{
         background-color: #fff;
         top: 0;
+        color: #444;
       }
 
       .box span{
@@ -248,15 +254,15 @@
               />
             </div>
             <div class="input_edit">
-              <span class="input_edit_label_two">Téléphone</span>
+              <span class="input_edit_label_two">Email</span>
               <input
-                type="tel"
+                type="email"
                 class="input_edit_input_two"
                 name="phone_email"
-                placeholder="Téléphone"
+                placeholder="Email"
               />
             </div>
-            <a href="#" class="change change_email">Utiliser un email</a>
+            <!--a href="#" class="change change_email">Utiliser un email</a-->
             <div class="birth_box">
               <h4>Date de naissance</h4>
               <p>
@@ -268,30 +274,25 @@
                 <div class="box">
                   <span>Mois</span>
                   <div class="select">
-                    <select name="" id="">
-                      <option value="">l</option>
-                      <option value="">l</option>
-                      <option value="">l</option>
+                    <select name="monthOpt" id="monthOpt" onchange="getMonthOptValue()">
+                      <option value=""></option>
                     </select>
-                    <i class="fas fa-chevron-down"></i>
                   </div>
                 </div>
                 <div class="box">
                   <span>Jour</span>
                   <div class="select">
-                    <select name="" id="">
+                    <select name="dayOpt" id="dayOpt" onchange="getDayOptValue()">
                       <option value=""></option>
                     </select>
-                    <i class="fas fa-chevron-down"></i>
                   </div>
                 </div>
                 <div class="box">
                   <span>Année</span>
                   <div class="select">
-                    <select name="" id="">
+                    <select name="yearOpt" id="yearOpt" onchange="getYearOptValue()">
                       <option value=""></option>
                     </select>
-                    <i class="fas fa-chevron-down"></i>
                   </div>
                 </div>
               </div>
@@ -343,21 +344,88 @@
       change.textContent = "Utiliser un email";
     }
 
-    change.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (change.classList.contains("change_email")) {
-        changeToEmail();
-        document.getElementsByName("phone_email")[0].placeholder =
-          label_two.textContent;
-        document.getElementsByName("phone_email")[0].type = "email";
-        change.classList.replace("change_email", "change_phone");
-      } else if (change.classList.contains("change_phone")) {
-        changeToPhone();
-        document.getElementsByName("phone_email")[0].placeholder =
-          label_two.textContent;
-        document.getElementsByName("phone_email")[0].type = "tel";
-        change.classList.replace("change_phone", "change_email");
+    // change.addEventListener("click", (e) => {
+    //   e.preventDefault();
+    //   if (change.classList.contains("change_email")) {
+    //     changeToEmail();
+    //     document.getElementsByName("phone_email")[0].placeholder =
+    //       label_two.textContent;
+    //     document.getElementsByName("phone_email")[0].type = "email";
+    //     change.classList.replace("change_email", "change_phone");
+    //   } else if (change.classList.contains("change_phone")) {
+    //     changeToPhone();
+    //     document.getElementsByName("phone_email")[0].placeholder =
+    //       label_two.textContent;
+    //     document.getElementsByName("phone_email")[0].type = "tel";
+    //     change.classList.replace("change_phone", "change_email");
+    //   }
+    // });
+
+    let months ={"janvier":31,"février":29,"mars":31,"avril":30,"mai":31,"juin":30,"juillet":31,"août":31,"septembre":30,"octobre":31,"novembre":30,"decembre":31}
+
+    function loadMonth(){
+      let select = document.getElementById('monthOpt')
+      for(let key in months){
+        select.innerHTML += `<option value="${key}">${key.toUpperCase()}</option>`
       }
-    });
+    }
+    function loadYear(){
+      let select = document.getElementById('yearOpt')
+      for(let i = 1924; i <= 2024; i++){
+        select.innerHTML += `<option value="${i}">${i}</option>`
+      }
+    }
+    loadMonth()
+    loadYear()
+
+    function getMonthOptValue(){
+      var selectedMonth = document.getElementById('monthOpt')
+      var val = selectedMonth.options[selectedMonth.selectedIndex].value
+      console.log("selected month: ",val)
+      return val
+    }
+    function getDayOptValue(){
+      var selectedDay = document.getElementById('dayOpt')
+      var val = selectedDay.options[selectedDay.selectedIndex].value
+      console.log("selected Day: ",val)
+      return val
+    }
+    function getYearOptValue(){
+      var selectedYear = document.getElementById('yearOpt')
+      var val = selectedYear.options[selectedYear.selectedIndex].value
+      console.log("selected Year: ",val)
+      return val
+    }
+
+    function loadDay(){
+      let choosedMonth = getMonthOptValue()
+      let choosedYear = getYearOptValue()
+      let dayLength = 1
+
+      if(choosedMonth == 'février' && choosedYear)
+      {
+        if(choosedYear%4==0){
+          dayLength = 29
+        }else{
+          dayLength = 28
+        }
+      }else
+      {
+        dayLength = months[choosedMonth.toLowerCase()]
+      }
+      let select = document.getElementById('dayOpt')
+      select.innerHTML = ""
+      for(let i = 1; i <= dayLength; i++){
+        select.innerHTML += `<option value="${i}">${i}</option>`
+      }
+    }
+
+    document.getElementById('monthOpt').addEventListener('change',()=>{
+      loadDay()
+    })
+    document.getElementById('yearOpt').addEventListener('change',()=>{
+      loadDay()
+    })
+
   </script>
 </html>
