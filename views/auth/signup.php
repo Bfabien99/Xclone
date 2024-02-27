@@ -182,7 +182,6 @@
       .box {
         display: flex;
         flex-direction: column;
-        padding: 5px;
         border-radius: 5px;
         border: 1px solid #ccc;
         position: relative;
@@ -196,6 +195,8 @@
       .select {
         display: flex;
         width: 100%;
+        overflow: hidden;
+        padding: 1px;
       }
 
       .select i {
@@ -219,6 +220,7 @@
 
       .box span{
         color: #bbb;
+        padding: 5px;
       }
 
       .box:nth-child(1) {
@@ -297,7 +299,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn_next">Suivant</button>
+            <a href="next/code_verification.php" type="submit" class="btn_next">Suivant</a>
           </form>
         </div>
       </section>
